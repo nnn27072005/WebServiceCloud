@@ -82,3 +82,13 @@ jobs:
           echo "### 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
           echo "The backend has been deployed to Render." >> $GITHUB_STEP_SUMMARY
           echo "[View Live Backend](https://game2shape-backend-y0nk.onrender.com/api)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: nguyen-ngoc-ngu-dt
+          SENTRY_PROJECT: javascript-nextjs
+        with:
+          environment: production
+          set_commits: auto
