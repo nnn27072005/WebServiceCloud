@@ -69,6 +69,10 @@ jobs:
       name: Production
       url: https://game2shape-backend-y0nk.onrender.com
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Deploy to Render
         env:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
