@@ -53,7 +53,7 @@ export default function Page() {
           <a
             target="_blank"
             rel="noopener"
-            href="https://nguyen-ngoc-ngu.sentry.io/issues/?project=4511223286005840"
+            href="https://nguyen-ngoc-ngu.sentry.io/issues/?project=4511230373789776"
           >
             Issues Page
           </a>
