@@ -86,6 +86,8 @@ jobs:
           echo "### 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
           echo "The backend has been deployed to Render." >> $GITHUB_STEP_SUMMARY
           echo "[View Live Backend](https://game2shape-backend-y0nk.onrender.com/api)" >> $GITHUB_STEP_SUMMARY
+          echo "[🐘 Neon Database Dashboard](https://console.neon.tech/)" >> $GITHUB_STEP_SUMMARY
+          echo "[🎯 Sentry Dashboard](https://sentry.io/organizations/nguyen-ngoc-ngu-dt/projects/javascript-nextjs/)" >> $GITHUB_STEP_SUMMARY
 
       - name: Create Sentry release
         uses: getsentry/action-release@v1
