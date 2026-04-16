@@ -76,5 +76,41 @@ Pipeline được thiết kế gồm 4 giai đoạn logic trong [.github/workflo
 ```bash
 cd backend && npm install && npx prisma generate && npx prisma db seed && npm run start:dev
 ```
+
+---
+
+## 🛠 6. Hướng dẫn giám sát với Sentry
+
+Dự án sử dụng Sentry để giám sát lỗi và hiệu năng thời gian thực.
+
+### Tích hợp vào Code (Backend NestJS)
+1. **Khởi tạo**: Trong `main.ts`, Sentry được khởi tạo ngay khi ứng dụng bắt đầu để bắt được các lỗi khởi động.
+   ```ts
+   Sentry.init({
+     dsn: process.env.SENTRY_DSN,
+     integrations: [nodeProfilingIntegration()],
+     tracesSampleRate: 1.0,
+   });
+   ```
+2. **Module**: `SentryModule.forRoot()` được import trong `app.module.ts` để tích hợp sâu vào hệ sinh thái NestJS.
+
+### Thiết lập trên Sentry Portal
+1. **Lấy DSN**: Vào **Sentry Dashboard > Project Settings > Client Keys (DSN)** để lấy mã kết nối. Lưu mã này vào biến `SENTRY_DSN` trong file `.env` hoặc GitHub Secrets.
+2. **GitHub Integration**: 
+   - Vào **Settings > Integrations > GitHub** để kết nối repository.
+   - Việc này giúp Sentry hiển thị **Suspect Commits** (dự đoán đoạn code nào gây lỗi dựa trên lịch sử commit).
+3. **Release Management**:
+   - Tạo **Auth Token** tại **User Settings > API > Auth Tokens**.
+   - Thêm Token này vào **GitHub Secrets** với tên `SENTRY_AUTH_TOKEN`.
+   - Pipeline sẽ tự động tạo Release và link các commit mỗi khi deploy, giúp bạn biết chính xác phiên bản nào đang chạy.
+
+### Kiểm tra hoạt động
+Bạn có thể gọi endpoint sau để "ép" hệ thống tạo một lỗi test và kiểm tra xem Sentry có nhận được không:
+`GET /v1/health/debug-sentry`
+
+---
+
+*Chúc bạn trải nghiệm và luyện tập vui vẻ với GameTwoShape!*
+*(Dự án thực hiện bởi Nhóm CockRoaches - L02)*
 ---
 
