@@ -25,6 +25,8 @@ Hệ thống được thiết kế theo kiến trúc **Decoupled** (Tách biệt
 - **Web Service (Backend):** NestJS v11, PostgreSQL (Neon.tech), Prisma ORM.
 - **Infrastructure:** Render, GitHub Actions, Docker Hub, Sentry.
 
+👉 **[Xem hướng dẫn triển khai chi tiết (Neon & Render)](DEPLOYMENT_GUIDE.md)**
+
 ---
 
 ## 🚀 3. CI/CD với GitHub + Cloud
