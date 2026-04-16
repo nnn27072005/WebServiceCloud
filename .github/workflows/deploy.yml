@@ -65,6 +65,9 @@ jobs:
     needs: dockerize
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/WebService-Cloud')
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://game2shape-backend-y0nk.onrender.com
     steps:
       - name: Deploy to Render
         env:
@@ -72,3 +75,10 @@ jobs:
         if: env.RENDER_DEPLOY_HOOK_URL != ''
         run: |
           curl -X POST "${{ env.RENDER_DEPLOY_HOOK_URL }}"
+
+      - name: Post Deployment Link
+        if: always()
+        run: |
+          echo "### 🚀 Deployment Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "The backend has been deployed to Render." >> $GITHUB_STEP_SUMMARY
+          echo "[View Live Backend](https://game2shape-backend-y0nk.onrender.com/api)" >> $GITHUB_STEP_SUMMARY
