@@ -7,12 +7,9 @@ import * as Sentry from '@sentry/nestjs';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
 
 async function bootstrap() {
-  // Load .env manual trước khi NestJS ConfigModule khởi động để lấy cho Sentry
   require('dotenv').config();
-
-  // Khởi tạo Sentry ngay lúc app bắt đầu chạy
   Sentry.init({
-    dsn: process.env.SENTRY_DSN, // Lấy từ biến môi trường
+    dsn: process.env.SENTRY_DSN,
     integrations: [
       nodeProfilingIntegration(),
     ],
@@ -47,7 +44,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.seup('api', app, document);
 
   // 6. Listen on Port
   const port = process.env.PORT || 3000;
