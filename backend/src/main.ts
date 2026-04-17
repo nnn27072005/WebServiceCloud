@@ -44,11 +44,12 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.seup('api', app, document);
+  SwaggerModule.setup('api', app, document);
 
   // 6. Listen on Port
   const port = process.env.PORT || 3000;
-  await app.listen(port, '0.0.0.0');
+  // await app.listen(port, '0.0.0.0');
+  await app.listen(port, '[IP_ADDRESS]');
   console.log(`Application is running on: http://localhost:${port}/api`);
 }
 bootstrap();
